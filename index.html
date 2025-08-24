@@ -247,6 +247,7 @@
           btn.disabled = true;
           btn.style.color = "FFDDEE";
         });
+        let draw = false;
         win = true;
         display_result.classList.remove("d-none");
         display_result.classList.add(
@@ -262,7 +263,35 @@
         play_again.style.backgroundColor = "rgb(124, 204, 206)";
         display_result.style.backgroundColor = "black";
         result.innerHTML = `${turn} Wins`;
-        updatescore(turn);
+        updatescore(turn, draw);
+      } else if (
+        btn1.innerHTML !== "" &&
+        btn2.innerHTML !== "" &&
+        btn3.innerHTML !== "" &&
+        btn4.innerHTML !== "" &&
+        btn5.innerHTML !== "" &&
+        btn6.innerHTML !== "" &&
+        btn7.innerHTML !== "" &&
+        btn8.innerHTML !== "" &&
+        btn9.innerHTML !== ""
+      ) {
+        display_result.classList.remove("d-none");
+        display_result.classList.add(
+          "d-grid",
+          "justify-content-center",
+          "align-items-center",
+          "fade-in",
+          "w-50",
+          "h-50",
+          "rounded"
+        );
+        board.style.display = "none";
+        play_again.style.backgroundColor = "rgb(124, 204, 206)";
+        display_result.style.backgroundColor = "black";
+        result.innerHTML = `It's a Draw!!`;
+        result.style.color = "red";
+        let draw = true;
+        updatescore(turn, draw);
       } else {
         win = false;
       }
@@ -281,6 +310,7 @@
     function reset() {
       Xscore.textContent = 0;
       Oscore.textContent = 0;
+      turn = "X";
 
       Updatecolor_of_score();
     }
@@ -295,11 +325,13 @@
       playagain();
     }
 
-    function updatescore(turn) {
-      if (turn === "X") {
-        Xscore.textContent++;
-      } else {
-        Oscore.textContent++;
+    function updatescore(turn, draw) {
+      if (!draw) {
+        if (turn === "X") {
+          Xscore.textContent++;
+        } else {
+          Oscore.textContent++;
+        }
       }
     }
   </script>
