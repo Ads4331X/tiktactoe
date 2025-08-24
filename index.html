@@ -275,11 +275,23 @@
         btn.innerHTML = "";
         btn.disabled = false;
       });
+      Updatecolor_of_score();
     }
 
     function reset() {
       Xscore.textContent = 0;
       Oscore.textContent = 0;
+
+      Updatecolor_of_score();
+    }
+
+    function Updatecolor_of_score() {
+      Xturn.style.color = "#0000EE";
+      Xturn.style.backgroundColor = "#d9b9f5";
+      Oturn.style.color = "#0000EE";
+      Oturn.style.backgroundColor = "#d9b9f5";
+      Xturn.style.opacity = 1;
+      Oturn.style.opacity = 1;
       playagain();
     }
 
