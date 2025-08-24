@@ -19,11 +19,20 @@
   </head>
 
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       margin: 0 !important;
     }
-    .container {
+    .contain {
       margin-top: -80px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh !important;
     }
 
     a {
@@ -80,8 +89,9 @@
 
     @media (max-width: 600px) {
       .board {
-        width: 300px;
-        height: 300px;
+        padding-top: 10px;
+        max-width: 300px;
+        max-width: 300px;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 5px;
@@ -91,33 +101,45 @@
         font-size: 1rem;
       }
 
+      .score {
+        font-size: 20px !important;
+        margin-top: 10px;
+        width: 150px;
+        height: 130px;
+        margin: 0 20px;
+      }
+      .contain {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 80vh !important;
+      }
+
+      .turn {
+        min-width: 450px;
+      }
+
       .X-turn,
       .O-turn {
+        flex-shrink: 0;
         font-size: 1.2rem;
         padding: 6px;
-      }
-      .score {
-        font-size: 10px !important;
-        margin-top: 10px;
-        width: 50px;
-        height: 80px;
       }
     }
   </style>
   <body class="bg-secondary">
-    <div class="turn d-flex mt-4">
-      <a class="X-turn ms-4"><span class="">X-turn</span></a>
-      <div class="score rounded">
-        <p class="S:">Score:</p>
-        <p>X: <span class="X-score">0</span></p>
-        <p>O: <span class="O-score">0</span></p>
+    <div class="wrapper">
+      <div class="turn d-flex mt-4">
+        <a class="X-turn"><span class="">X-turn</span></a>
+        <div class="score rounded">
+          <p class="S:">Score:</p>
+          <p>X: <span class="X-score">0</span></p>
+          <p>O: <span class="O-score">0</span></p>
+        </div>
+        <a class="O-turn"><span>O-turn</span></a>
       </div>
-      <a class="O-turn me-4"><span>O-turn</span></a>
     </div>
-    <div
-      class="container d-flex justify-content-center align-items-center"
-      style="height: 100vh !important"
-    >
+    <div class="contain">
       <div class="display_result">
         <p class="result"></p>
         <a class="play_again btn btn-primary" onclick="playagain()"
@@ -125,6 +147,7 @@
         >
         <a class="reset btn btn-primary" onclick="reset()">Reset Score</a>
       </div>
+
       <div class="board">
         <button
           class="btn btn-light rounded-0"
@@ -245,7 +268,7 @@
       ) {
         button.forEach((btn) => {
           btn.disabled = true;
-          btn.style.color = "FFDDEE";
+          btn.style.color = "#FFDDEE";
         });
         let draw = false;
         win = true;
